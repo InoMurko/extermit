@@ -1,24 +1,24 @@
-# ExTermit
+ExTermit
+==============
 
-**TODO: Add description**
+Library for serializing Erlang terms to signed encrypted binaries and reliably deserializing them back.
 
-## Installation
+The original project/idea is: https://github.com/dvv/termit
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+This project includes updated hashing algorithms and replacing deprecated functions.
+Usage
+--------------
 
-  1. Add `extermit` to your list of dependencies in `mix.exs`:
+A typical use case is to provide means to keep secrets put in public domain, e.g. secure cookies.
 
-    ```elixir
-    def deps do
-      [{:extermit, "~> 0.1.0"}]
-    end
-    ```
+```elixir
+term = {:a, :b, :c, [:d, 'e', "foo"]}
+secret = "TopSecRet"
+enc = Termit.encode(term, secret)
+assert {:ok, term} == Termit.decode(enc, secret)
+```
 
-  2. Ensure `extermit` is started before your application:
+Thanks
+--------------
 
-    ```elixir
-    def application do
-      [applications: [:extermit]]
-    end
-    ```
-
+[Vladimir Dronnikov](https://github.com/dvv) for the original project idea - Termit.

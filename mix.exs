@@ -13,7 +13,7 @@ defmodule ExTermit.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: []]
   end
 
   defp description do
@@ -26,13 +26,13 @@ defmodule ExTermit.Mixfile do
 
   defp package do
     [name: :extermit,
-     files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+     files: ["lib", "mix.exs", "README*"],
      maintainers: ["Ino Murko"],
      licenses: ["Apache 2.0"],
-     links: %{}]
+     links: %{"GitHub" => "https://github.com/InoMurko/extermit"}]
   end
 
   defp deps do
-    []
+    [{:ex_doc, ">= 0.0.0", only: :dev}]
   end
 end

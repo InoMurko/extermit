@@ -5,11 +5,11 @@ defmodule ExTermitTest do
   test "smoke test" do
     term = {:a, :b, :c, [:d, 'e', "foo"]}
     secret = "TopSecRet"
-    enc = Termit.encode(term, secret)
-    assert {:ok, term} == Termit.decode(enc, secret)
+    enc = ExTermit.encode(term, secret)
+    assert {:ok, term} == ExTermit.decode(enc, secret)
     #forged data
-    assert ({:error, :forged} == Termit.decode(<<"1">>, secret))
-    assert ({:error, :forged} == Termit.decode(<<"0", enc::binary>>, secret))
-    assert ({:error, :forged} == Termit.decode(<<enc::binary, "1">>, secret))
+    assert ({:error, :forged} == ExTermit.decode(<<"1">>, secret))
+    assert ({:error, :forged} == ExTermit.decode(<<"0", enc::binary>>, secret))
+    assert ({:error, :forged} == ExTermit.decode(<<enc::binary, "1">>, secret))
   end
 end
